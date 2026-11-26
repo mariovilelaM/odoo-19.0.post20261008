@@ -10,6 +10,7 @@
         'data/tema_data.xml',
         'views/libro_views.xml',
         'views/tema_views.xml',
+        'views/prestamo_views.xml',
     ],
 
     'application': True,
