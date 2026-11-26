@@ -7,7 +7,10 @@
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
+        'data/tema_data.xml',
         'views/libro_views.xml',
+        'views/tema_views.xml',
     ],
+
     'application': True,
 }

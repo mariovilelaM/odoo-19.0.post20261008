@@ -1,51 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 1. VISTA DE LISTA: qué columnas se ven en la lista de libros -->
-    <record id="libro_view_list" model="ir.ui.view">
-        <field name="name">biblioteca.libro.list</field>
-        <field name="model">biblioteca.libro</field>
-        <field name="arch" type="xml">
-            <list>
-                <field name="name"/>
-                <field name="autor"/>
-                <field name="isbn"/>
-                <field name="paginas"/>
-                <field name="genero"/>
-                <field name="disponible"/>
-            </list>
-        </field>
-    </record>
+<!-- LISTA de libros -->
+<record id="libro_view_list" model="ir.ui.view">
+    <field name="name">biblioteca.libro.list</field>
+    <field name="model">biblioteca.libro</field>
+    <field name="arch" type="xml">
+        <list>
+            <field name="name"/>
+            <field name="autor"/>
+            <field name="genero"/>
+            <field name="tema_ids" widget="many2many_tags"/>
+            <field name="paginas"/>
+            <field name="disponible"/>
+        </list>
+    </field>
+</record>
 
-    <!-- 2. VISTA DE FORMULARIO: la ficha de un libro -->
-    <record id="libro_view_form" model="ir.ui.view">
-        <field name="name">biblioteca.libro.form</field>
-        <field name="model">biblioteca.libro</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
+<!-- FORMULARIO de un libro, en dos columnas -->
+<record id="libro_view_form" model="ir.ui.view">
+    <field name="name">biblioteca.libro.form</field>
+    <field name="model">biblioteca.libro</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
                     <group>
                         <field name="name"/>
                         <field name="autor"/>
                         <field name="isbn"/>
+                        <field name="genero"/>
+                    </group>
+                    <group>
                         <field name="fecha_publicacion"/>
                         <field name="paginas"/>
-                        <field name="genero"/>
                         <field name="disponible"/>
+                        <field name="tema_ids" widget="many2many_tags"/>
                     </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
 
-    <!-- 3. ACCIÓN: abrir los libros, primero en lista y luego en ficha -->
-    <record id="libro_action" model="ir.actions.act_window">
-        <field name="name">Libros</field>
-        <field name="res_model">biblioteca.libro</field>
-        <field name="view_mode">list,form</field>
-    </record>
+<!-- ACCIÓN -->
+<record id="libro_action" model="ir.actions.act_window">
+    <field name="name">Libros</field>
+    <field name="res_model">biblioteca.libro</field>
+    <field name="view_mode">list,form</field>
+</record>
 
-    <!-- 4. MENÚS: el icono de la aplicación y su opción "Libros" -->
-    <menuitem id="menu_biblioteca" name="Biblioteca"/>
-    <menuitem id="menu_libros" name="Libros"
-        parent="menu_biblioteca" action="libro_action"/>
+<!-- MENÚS -->
+<menuitem id="menu_biblioteca" name="Biblioteca"/>
+<menuitem id="menu_libros" name="Libros"
+          parent="menu_biblioteca" action="libro_action" sequence="10"/>
 </odoo>
