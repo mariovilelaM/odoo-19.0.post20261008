@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ACCIÓN DE INFORME: añade "Imprimir > Justificante de préstamo" -->
+    <record id="report_prestamo" model="ir.actions.report">
+        <field name="name">Justificante de préstamo</field>
+        <field name="model">biblioteca.prestamo</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">mi_biblioteca.report_prestamo_document</field>
+        <field name="report_file">mi_biblioteca.report_prestamo_document</field>
+        <field name="print_report_name">'Prestamo - %s' % object.name</field>
+        <field name="binding_model_id" ref="model_biblioteca_prestamo"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- PLANTILLA QWeb: el contenido del documento -->
+    <template id="report_prestamo_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>
+                            Justificante de préstamo <span t-field="o.name"/>
+                        </h2>
+                        <table class="table table-sm">
+                            <tr>
+                                <th>Libro</th>
+                                <td><span t-field="o.libro_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <th>Socio</th>
+                                <td><span t-field="o.socio_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <th>Fecha de préstamo</th>
+                                <td><span t-field="o.fecha_prestamo"/></td>
+                            </tr>
+                            <tr>
+                                <th>Devolución prevista</th>
+                                <td><span t-field="o.fecha_prevista"/></td>
+                            </tr>
+                            <tr>
+                                <th>Estado</th>
+                                <td><span t-field="o.estado"/></td>
+                            </tr>
+                        </table>
+                        <p>
+                            Recuerde devolver el libro antes de la fecha prevista.
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

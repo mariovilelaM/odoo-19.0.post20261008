@@ -1,8 +1,8 @@
 {
     'name': 'Biblioteca',
-    'version': '19.0.1.0.0',
-    'summary': 'Catálogo de libros',
-    'author': 'Mario Payuela',
+    'version': '19.0.2.0.0',
+    'summary': 'Catálogo de libros y préstamos',
+    'author': 'Tu nombre',
     'license': 'LGPL-3',
     'depends': ['base', 'contacts'],
     'data': [
@@ -14,7 +14,7 @@
         'views/tema_views.xml',
         'views/prestamo_views.xml',
         'views/res_partner_views.xml',
+        'report/prestamo_report.xml',
     ],
-
     'application': True,
 }
