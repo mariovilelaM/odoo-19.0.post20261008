@@ -6,6 +6,7 @@
     'license': 'LGPL-3',
     'depends': ['base', 'contacts'],
     'data': [
+        'security/biblioteca_security.xml',
         'security/ir.model.access.csv',
         'data/tema_data.xml',
         'data/prestamo_sequence.xml',
